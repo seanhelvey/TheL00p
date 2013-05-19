@@ -1,2 +1,5 @@
-# Ruby on Rails Tutorial: sample application [mod]  
-playing with simple modifications to the sample tutorial
+# Get in TheL00p! 
+Create an account  
+Sign in  
+Add friends  
+Create and attend events   
