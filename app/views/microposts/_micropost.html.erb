@@ -8,17 +8,22 @@
                                      data: { confirm: 'You sure?' },
                                      title: micropost.content %>
   <% end %>
-  <%= form_for(micropost.reverse_memberships.build(member_of_id: @user.id),
-	             ) do |f| %>
-	  <div><%= f.hidden_field :member_of_id %></div>
-	  <%= f.submit "Attend", class: "btn btn-large btn-primary" %>
-	<% end %>  
-  <% if false %>
-	<%= form_for(current_user.relationships.build(followed_id: @user.id),
-	             remote: true) do |f| %>
-	  <div><%= f.hidden_field :followed_id %></div>
-	  <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
-	<% end %>  
+	<% unless current_user?(@user) %>
+	  <div id="attend_form">
+	  <% if current_user.attend?(micropost) %>
+			<%= form_for(micropost.reverse_memberships.find_by_member_of_id(micropost),
+			             html: { method: :delete },
+			             ) do |f| %>
+			  <%= f.submit "Miss", class: "btn btn-large" %>
+			<% end %>
+	  <% else %>
+		  <%= form_for(micropost.reverse_memberships.build(member_of_id: micropost.id),
+			             ) do |f| %>
+			  <div><%= f.hidden_field :member_of_id %></div>
+			  <%= f.submit "Attend", class: "btn btn-large btn-primary" %>
+			<% end %> 
+	  <% end %>
+	  </div>
 	<% end %>
 
 </li>

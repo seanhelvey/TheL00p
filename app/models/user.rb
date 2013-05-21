@@ -38,6 +38,14 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
+  def attend!(micropost)
+    memberships.create!(member_of_id: micropost.id)
+  end
+
+  def attend?(micropost)
+    memberships.find_by_member_of_id(micropost.id)
+  end
+
   private
 
     def create_remember_token

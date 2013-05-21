@@ -1,0 +1,5 @@
+  <%= form_for(micropost.reverse_memberships.build(member_of_id: micropost.id),
+	             ) do |f| %>
+	  <div><%= f.hidden_field :member_of_id %></div>
+	  <%= f.submit "Attend", class: "btn btn-large btn-primary" %>
+	<% end %> 

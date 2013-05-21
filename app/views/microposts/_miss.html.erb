@@ -1,0 +1,5 @@
+<%= form_for(micropost.reverse_relationships.find_by_member_of_id(micropost),
+             html: { method: :delete },
+             ) do |f| %>
+  <%= f.submit "Miss", class: "btn btn-large" %>
+<% end %>
