@@ -12,4 +12,22 @@
                                      data: { confirm: "You sure?" },
                                      title: feed_item.content %>
   <% end %>
+
+    <div id="attend_form">
+    <% if current_user.attend?(feed_item) %>
+      <%= form_for(feed_item.reverse_memberships.find_by_member_of_id(feed_item),
+                   html: { method: :delete },
+                   ) do |f| %>
+        <%= f.submit "Miss", class: "btn btn-large" %>
+      <% end %>
+    <% else %>
+      <%= form_for(feed_item.reverse_memberships.build(member_of_id: feed_item.id),
+                   ) do |f| %>
+        <div><%= f.hidden_field :member_of_id %></div>
+        <%= f.submit "Attend", class: "btn btn-large btn-primary" %>
+      <% end %> 
+    <% end %>
+    </div>
+
+
 </li>
