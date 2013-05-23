@@ -10,5 +10,7 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
+    @micropost = Membership.find(params[:id]).member_of
+    current_user.miss!(@micropost)
   end
 end

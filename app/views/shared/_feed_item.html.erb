@@ -16,7 +16,7 @@
     <div id="attend_form">
     <% if current_user.attend?(feed_item) %>
       <%= form_for(feed_item.reverse_memberships.find_by_member_of_id(feed_item),
-                   html: { method: :delete },
+                   html: { method: :delete }
                    ) do |f| %>
         <%= f.submit "Miss", class: "btn btn-large" %>
       <% end %>

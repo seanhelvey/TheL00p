@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     memberships.find_by_member_of_id(micropost.id)
   end
 
+  def miss!(micropost)
+    memberships.find_by_member_of_id(micropost.id).destroy
+  end
+
   private
 
     def create_remember_token
